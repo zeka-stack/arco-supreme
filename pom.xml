@@ -4,18 +4,34 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project info -->
     <groupId>dev.dong4j</groupId>
     <artifactId>arco-supreme</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Arco Supreme</name>
-    <url>https://github.com/zeka-stack/arco-supreme</url>
 
+    <!-- Project metadata -->
+    <name>Arco Supreme</name>
+    <description>Arco Supreme</description>
+    <url>https://github.com/zeka-stack/arco-supreme</url>
+    <inceptionYear>2025</inceptionYear>
+
+    <!-- Organization -->
     <organization>
-        <name>Zeka.Stack</name>
+        <name>Zeka Stack Inc.</name>
         <url>https://github.com/zeka-stack</url>
     </organization>
 
+    <!-- License -->
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/license/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Developers -->
     <developers>
         <developer>
             <id>dong4j</id>
@@ -25,17 +41,43 @@
             <organizationUrl>https://github.com/zeka-stack</organizationUrl>
             <roles>
                 <role>designer</role>
+                <role>developer</role>
             </roles>
         </developer>
     </developers>
 
+    <!-- SCM (Source Control Management) -->
     <scm>
-        <!-- mvn scm:checkin -Dmessage=xxx : push 代码; mvn scm:update : 更新代码 -->
         <url>https://github.com/zeka-stack/arco-supreme</url>
-        <!-- scm:[git/svn]:地址 -->
         <connection>scm:git:https://github.com/zeka-stack/arco-supreme.git</connection>
-        <developerConnection>scm:git:https://github.com/zeka-stack/arco-supreme.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/zeka-stack/arco-supreme.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
+
+    <!-- Issue tracking -->
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/zeka-stack/arco-supreme/issues</url>
+    </issueManagement>
+
+    <!-- CI/CD system -->
+    <ciManagement>
+        <system>GitHub Actions</system>
+        <url>https://github.com/zeka-stack/arco-supreme/actions</url>
+    </ciManagement>
+
+    <!-- Contributors (optional) -->
+    <contributors>
+        <contributor>
+            <name>dong4j</name>
+            <email>dong4j@gmail.com</email>
+            <url>https://github.com/dong4j</url>
+            <organization>Zeka.Stack</organization>
+            <roles>
+                <role>maintainer</role>
+            </roles>
+        </contributor>
+    </contributors>
 
     <properties>
         <!-- 默认跳过 test -->
