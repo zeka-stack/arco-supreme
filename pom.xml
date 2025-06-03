@@ -12,7 +12,7 @@
 
     <!-- Project metadata -->
     <name>Arco Supreme</name>
-    <description>Arco Supreme</description>
+    <description>Zeka.Stack 脚手架的顶层项目, 用于规范旗下的所有组件和业务服务</description>
     <url>https://github.com/zeka-stack/arco-supreme</url>
     <inceptionYear>2025</inceptionYear>
 
@@ -50,7 +50,7 @@
     <scm>
         <url>https://github.com/zeka-stack/arco-supreme</url>
         <connection>scm:git:https://github.com/zeka-stack/arco-supreme.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/zeka-stack/arco-supreme.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:zeka-stack/arco-supreme.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -227,9 +227,24 @@
                         <configuration>
                             <publishingServerId>central</publishingServerId>
                             <autoPublish>true</autoPublish>
+                            <waitUntil>published</waitUntil>
                         </configuration>
                     </plugin>
                     <!-- 下面 3 个插件是 maven 公共仓库必须的 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -258,20 +273,6 @@
                                     <additionalOptions>-Xdoclint:none</additionalOptions>
                                     <additionalJOption>-Xdoclint:none</additionalJOption>
                                 </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven-gpg-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
                             </execution>
                         </executions>
                     </plugin>
