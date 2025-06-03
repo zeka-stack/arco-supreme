@@ -214,8 +214,8 @@
 
     <!-- 通过配置切换部署的仓库 -->
     <profiles>
+        <!-- 配置方式: https://central.sonatype.org/register/central-portal/ -->
         <profile>
-            <!-- 配置方式: https://central.sonatype.org/register/central-portal/ -->
             <id>central</id>
             <build>
                 <plugins>
@@ -278,10 +278,24 @@
                     </plugin>
                 </plugins>
             </build>
+            <!-- 允许项目使用快照版本 -->
+            <repositories>
+                <repository>
+                    <name>Central Portal Snapshots</name>
+                    <id>central-portal-snapshots</id>
+                    <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
         </profile>
+        <!-- 公司 maven 私服配置 -->
         <profile>
             <id>private</id>
-            <!-- 公司 maven 私服配置 -->
             <distributionManagement>
                 <snapshotRepository>
                     <id>snapshots</id>
