@@ -197,6 +197,38 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <!-- arco-supreme 和 arco-component-parent 使用 -->
+                <plugin>
+                    <!-- http://maven.apache.org/plugins/maven-source-plugin/index.html -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                    <configuration>
+                        <!-- IDEA 直接查看源码 -->
+                        <attach>true</attach>
+                        <!-- 包含资源文件 -->
+                        <excludeResources>true</excludeResources>
+                        <finalName>${project.artifactId}-${project.version}</finalName>
+                        <!-- 包含 pom -->
+                        <includePom>true</includePom>
+                    </configuration>
+                    <!-- 绑定source插件到Maven的生命周期,并在生命周期后执行绑定的source的goal -->
+                    <executions>
+                        <execution>
+                            <!--在生命周期后执行绑定的source插件的goals -->
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                            <!-- 绑定source插件到Maven的生命周期 -->
+                            <phase>verify</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 
@@ -244,27 +276,6 @@
                         <!-- http://maven.apache.org/plugins/maven-source-plugin/index.html -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven-source-plugin.version}</version>
-                        <configuration>
-                            <!-- IDEA 直接查看源码 -->
-                            <attach>true</attach>
-                            <!-- 包含资源文件 -->
-                            <excludeResources>true</excludeResources>
-                            <finalName>${project.artifactId}-${project.version}</finalName>
-                            <!-- 包含 pom -->
-                            <includePom>true</includePom>
-                        </configuration>
-                        <!-- 绑定source插件到Maven的生命周期,并在生命周期后执行绑定的source的goal -->
-                        <executions>
-                            <execution>
-                                <!--在生命周期后执行绑定的source插件的goals -->
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                                <!-- 绑定source插件到Maven的生命周期 -->
-                                <phase>verify</phase>
-                            </execution>
-                        </executions>
                     </plugin>
                     <!--endregion-->
                     <!--region maven-javadoc-plugin-->
@@ -325,6 +336,7 @@
                 </repository>
             </repositories>
         </profile>
+
         <profile>
             <id>private</id>
             <!--region 公司 maven 私服配置 @formatter:off-->
