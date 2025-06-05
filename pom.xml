@@ -94,39 +94,18 @@
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
         <!--endregion-->
         <!--region maven plugin version -->
-        <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
-        <maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
-        <maven-jxr-plugin.version>3.1.1</maven-jxr-plugin.version>
-        <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
-        <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
-        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
-        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
-        <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-        <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
-        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
-        <maven-invoker-plugin.version>3.2.1</maven-invoker-plugin.version>
-        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
-        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-
-        <build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
-        <flatten-maven-plugin.version>1.2.4</flatten-maven-plugin.version>
-        <git-commit-id-plugin.version>2.2.6</git-commit-id-plugin.version>
-        <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <flatten-maven-plugin.version>1.2.4</flatten-maven-plugin.version>
         <!--endregion-->
 
-        <!--region 自定义依赖 version-->
-        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <!--region 自定义依赖 version (如果 arco-maven-plugin 和 arco-processor 共用的依赖会提取到这里来统一管理 )-->
         <annotations.version>19.0.0</annotations.version>
         <lombok.version>1.18.22</lombok.version>
+
         <junit.version>5.6.2</junit.version>
         <slf4j.version>1.7.30</slf4j.version>
         <log4j2.version>2.17.0</log4j2.version>
@@ -153,7 +132,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-bom</artifactId>
@@ -161,6 +139,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <!-- lombok 插件, 简化代码 (在 package 阶段排除) -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -207,6 +186,7 @@
                 </executions>
             </plugin>
 
+            <!-- 全局定义 JDK 版本, 详细配置由子模块重写 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -228,6 +208,7 @@
             <!--region Maven 公共仓库配置 -->
             <build>
                 <plugins>
+                    <!--region central-publishing-maven-plugin-->
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
@@ -239,7 +220,9 @@
                             <waitUntil>published</waitUntil>
                         </configuration>
                     </plugin>
+                    <!--endregion-->
                     <!-- 下面 3 个插件是 maven 公共仓库必须的 -->
+                    <!--region maven-gpg-plugin-->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -254,23 +237,61 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!--endregion-->
+                    <!--region maven-source-plugin-->
+                    <!-- 打包源码插件 -->
                     <plugin>
+                        <!-- http://maven.apache.org/plugins/maven-source-plugin/index.html -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
                         <version>${maven-source-plugin.version}</version>
+                        <configuration>
+                            <!-- IDEA 直接查看源码 -->
+                            <attach>true</attach>
+                            <!-- 包含资源文件 -->
+                            <excludeResources>true</excludeResources>
+                            <finalName>${project.artifactId}-${project.version}</finalName>
+                            <!-- 包含 pom -->
+                            <includePom>true</includePom>
+                        </configuration>
+                        <!-- 绑定source插件到Maven的生命周期,并在生命周期后执行绑定的source的goal -->
                         <executions>
                             <execution>
-                                <id>attach-sources</id>
+                                <!--在生命周期后执行绑定的source插件的goals -->
                                 <goals>
                                     <goal>jar-no-fork</goal>
                                 </goals>
+                                <!-- 绑定source插件到Maven的生命周期 -->
+                                <phase>verify</phase>
                             </execution>
                         </executions>
                     </plugin>
+                    <!--endregion-->
+                    <!--region maven-javadoc-plugin-->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven-javadoc-plugin.version}</version>
+                        <configuration>
+                            <!-- 跳过 javadoc 注释检查 -->
+                            <doclint>none</doclint>
+                            <encoding>${project.encoding}</encoding>
+                            <charset>${project.encoding}</charset>
+                            <docencoding>${project.encoding}</docencoding>
+                            <failOnError>false</failOnError>
+                            <tags>
+                                <tag>
+                                    <name>email</name>
+                                    <placement>t</placement>
+                                    <head>开发者邮箱:</head>
+                                </tag>
+                                <tag>
+                                    <name>date</name>
+                                    <placement>t</placement>
+                                    <head>创建时间:</head>
+                                </tag>
+                            </tags>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -285,6 +306,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!--endregion-->
                 </plugins>
             </build>
             <!--endregion-->
