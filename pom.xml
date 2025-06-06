@@ -321,32 +321,28 @@
                 </plugins>
             </build>
             <!--endregion-->
-            <!-- 允许项目使用快照版本 -->
+            <!-- 允许项目使用快照版本 @formatter:off-->
             <repositories>
                 <repository>
                     <name>Central Portal Snapshots</name>
                     <id>central-portal-snapshots</id>
                     <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-                    <releases>
-                        <enabled>false</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
+                    <releases><enabled>false</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
                 </repository>
             </repositories>
         </profile>
 
         <profile>
             <id>private</id>
-            <!--region 公司 maven 私服配置 @formatter:off-->
+            <!--region 公司 maven 私服配置 -->
             <distributionManagement>
                 <snapshotRepository>
                     <id>snapshots</id>
                     <!--suppress UnresolvedMavenProperty -->
                     <url>${env.MVN_PRIVATE_SNAPSHOTS_URL}</url>
                     <releases><enabled>false</enabled></releases>
-                    <snapshots> <enabled>true</enabled></snapshots>
+                    <snapshots><enabled>true</enabled></snapshots>
                 </snapshotRepository>
                 <repository>
                     <id>releases</id>
@@ -356,7 +352,7 @@
                     <snapshots><enabled>false</enabled></snapshots>
                 </repository>
             </distributionManagement>
-            <!--endregion-->
+            <!--endregion @formatter:on -->
         </profile>
     </profiles>
 
