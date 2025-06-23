@@ -80,6 +80,8 @@
     </contributors>
 
     <properties>
+        <!-- 定义 zeka.stack 所有项目的版本 -->
+        <global.version>0.0.1-SNAPSHOT</global.version>
         <!-- 默认跳过 test -->
         <maven.test.skip>true</maven.test.skip>
         <!-- 跳过 javadoc -->
