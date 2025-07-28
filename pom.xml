@@ -148,14 +148,14 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-                <scope>provided</scope>
+                <optional>true</optional>
             </dependency>
             <!-- idea 提供的用于编译时检查 null 的工具包 (在 package 阶段排除) -->
             <dependency>
                 <groupId>org.jetbrains</groupId>
                 <artifactId>annotations</artifactId>
                 <version>${annotations.version}</version>
-                <scope>provided</scope>
+                <optional>true</optional>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -331,7 +331,11 @@
                     <id>central-portal-snapshots</id>
                     <url>https://central.sonatype.com/repository/maven-snapshots/</url>
                     <releases><enabled>false</enabled></releases>
-                    <snapshots><enabled>true</enabled></snapshots>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <!-- ✅ 永远不检查更新, 因为是多个独立的 maven 项目, 项目之间使用 <relativePath/> 来杜绝本地依赖查找, 导致每次使用 mvn 时都会从远端更新快照版本 所以这里设置为禁用更新  -->
+                        <updatePolicy>never</updatePolicy>
+                    </snapshots>
                 </repository>
             </repositories>
         </profile>
@@ -345,7 +349,11 @@
                     <!--suppress UnresolvedMavenProperty -->
                     <url>${env.MVN_PRIVATE_SNAPSHOTS_URL}</url>
                     <releases><enabled>false</enabled></releases>
-                    <snapshots><enabled>true</enabled></snapshots>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <!-- ✅ 永远不检查更新, 因为是多个独立的 maven 项目, 项目之间使用 <relativePath/> 来杜绝本地依赖查找, 导致每次使用 mvn 时都会从远端更新快照版本 所以这里设置为禁用更新  -->
+                        <updatePolicy>never</updatePolicy>
+                    </snapshots>
                 </snapshotRepository>
                 <repository>
                     <id>releases</id>
