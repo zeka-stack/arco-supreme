@@ -148,14 +148,14 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-                <optional>true</optional>
+                <scope>provided</scope>
             </dependency>
             <!-- idea 提供的用于编译时检查 null 的工具包 (在 package 阶段排除) -->
             <dependency>
                 <groupId>org.jetbrains</groupId>
                 <artifactId>annotations</artifactId>
                 <version>${annotations.version}</version>
-                <optional>true</optional>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
