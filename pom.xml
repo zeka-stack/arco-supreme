@@ -87,9 +87,9 @@
         <!-- 跳过 javadoc -->
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <!-- 全局设置 jdk 版本 -->
-        <java.version>1.8</java.version>
-        <maven.compile.source>${java.version}</maven.compile.source>
-        <maven.compile.target>${java.version}</maven.compile.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <!-- 关闭 API 过时警告 -->
         <maven.compile.deprecation>off</maven.compile.deprecation>
         <project.encoding>UTF-8</project.encoding>
