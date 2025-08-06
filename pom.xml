@@ -96,23 +96,23 @@
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
         <!--endregion-->
         <!--region maven plugin version -->
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-        <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <flatten-maven-plugin.version>1.2.4</flatten-maven-plugin.version>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
+        <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
+        <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
         <!--endregion-->
 
         <!--region 自定义依赖 version (如果 arco-maven-plugin 和 arco-processor 共用的依赖会提取到这里来统一管理 )-->
-        <annotations.version>19.0.0</annotations.version>
-        <lombok.version>1.18.22</lombok.version>
+        <annotations.version>26.0.1</annotations.version>
+        <lombok.version>1.18.38</lombok.version>
 
-        <junit.version>5.6.2</junit.version>
-        <slf4j.version>1.7.30</slf4j.version>
-        <log4j2.version>2.17.0</log4j2.version>
-        <hutool.version>5.7.16</hutool.version>
+        <junit.version>5.13.4</junit.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <log4j2.version>2.24.3</log4j2.version>
+        <hutool.version>5.8.36</hutool.version>
 
         <spring-framework.version>6.2.9</spring-framework.version>
         <spring-boot-dependencies.version>3.5.4</spring-boot-dependencies.version>
