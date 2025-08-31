@@ -82,6 +82,9 @@
     <properties>
         <!-- 定义 zeka.stack 所有项目的版本 -->
         <global.version>2.0.0-SNAPSHOT</global.version>
+        <!-- 默认固定时间戳（保证可重现构建 每次升级后记得添加一个配置, 也算是可以记录版本的发布时间 -->
+        <outputTimestamp.1.0.0>2025-05-12T00:00:00Z</outputTimestamp.1.0.0>
+        <outputTimestamp.2.0.0-SNAPSHOT>2025-08-30T00:00:00Z</outputTimestamp.2.0.0-SNAPSHOT>
         <!-- 默认跳过 test -->
         <maven.test.skip>true</maven.test.skip>
         <!-- 跳过 javadoc -->
