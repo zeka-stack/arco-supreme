@@ -350,7 +350,10 @@
                     <releases><enabled>false</enabled></releases>
                     <snapshots>
                         <enabled>true</enabled>
-                        <!-- ✅ 永远不检查更新, 因为是多个独立的 maven 项目, 项目之间使用 <relativePath/> 来杜绝本地依赖查找, 导致每次使用 mvn 时都会从远端更新快照版本 所以这里设置为禁用更新  -->
+                        <!--
+                        永远不检查更新, 因为是多个独立的 maven 项目, 项目之间使用 <relativePath/> 来杜绝本地依赖查找, 导致每次使用 mvn 时都会从远端更新快照版本 所以这里设置为禁用更新
+                        本地开发修改了代码直接 install 即可, 如果是团队开发, 使用 -U 强制更新快照
+                        -->
                         <updatePolicy>never</updatePolicy>
                     </snapshots>
                 </repository>
@@ -368,7 +371,10 @@
                     <releases><enabled>false</enabled></releases>
                     <snapshots>
                         <enabled>true</enabled>
-                        <!-- ✅ 永远不检查更新, 因为是多个独立的 maven 项目, 项目之间使用 <relativePath/> 来杜绝本地依赖查找, 导致每次使用 mvn 时都会从远端更新快照版本 所以这里设置为禁用更新  -->
+                        <!--
+                        永远不检查更新, 因为是多个独立的 maven 项目, 项目之间使用 <relativePath/> 来杜绝本地依赖查找, 导致每次使用 mvn 时都会从远端更新快照版本 所以这里设置为禁用更新
+                        本地开发修改了代码直接 install 即可, 如果是团队开发, 使用 -U 强制更新快照
+                        -->
                         <updatePolicy>never</updatePolicy>
                     </snapshots>
                 </snapshotRepository>
