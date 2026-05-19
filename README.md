@@ -51,7 +51,7 @@ arco-supreme (全局基础) ← 当前模块
 <parent>
     <groupId>dev.dong4j</groupId>
     <artifactId>arco-supreme</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <relativePath/>
 </parent>
 ```
@@ -72,7 +72,7 @@ arco-supreme (全局基础) ← 当前模块
 
 ```xml
 <properties>
-    <revision>2.0.0-SNAPSHOT</revision>
+    <revision>3.0.0-SNAPSHOT</revision>
 </properties>
 ```
 
@@ -155,11 +155,12 @@ arco-supreme (全局基础) ← 当前模块
 ```xml
 <properties>
     <!-- 全局版本号 -->
-    <global.version>2.0.0-SNAPSHOT</global.version>
+    <global.version>3.0.0-SNAPSHOT</global.version>
 
     <!-- 可重现构建时间戳 -->
     <outputTimestamp.1.0.0>2025-05-12T00:00:00Z</outputTimestamp.1.0.0>
     <outputTimestamp.2.0.0-SNAPSHOT>2025-08-30T00:00:00Z</outputTimestamp.2.0.0-SNAPSHOT>
+    <outputTimestamp.3.0.0-SNAPSHOT>2026-05-19T00:00:00Z</outputTimestamp.3.0.0-SNAPSHOT>
 </properties>
 ```
 
