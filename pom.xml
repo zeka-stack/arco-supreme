@@ -119,6 +119,7 @@
 
         <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
         <flatten-maven-plugin.version>1.7.2</flatten-maven-plugin.version>
+        <com.skillsjars.version>0.0.7</com.skillsjars.version>
         <!--endregion-->
 
         <!--region 自定义依赖 version (如果 arco-maven-plugin 和 arco-processor 共用的依赖会提取到这里来统一管理 )-->
@@ -228,7 +229,7 @@
             <plugin>
                 <groupId>com.skillsjars</groupId>
                 <artifactId>maven-plugin</artifactId>
-                <version>0.0.7</version>
+                <version>${com.skillsjars.version}</version>
                 <configuration>
                     <!-- 每个组件模块维护自己的 skills 目录，由组件父 POM 统一把 Skill 打包到 META-INF/skills。 -->
                     <skillsDir>${project.basedir}/skills</skillsDir>
