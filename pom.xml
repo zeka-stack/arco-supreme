@@ -224,6 +224,23 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.skillsjars</groupId>
+                <artifactId>maven-plugin</artifactId>
+                <version>0.0.7</version>
+                <configuration>
+                    <!-- 每个组件模块维护自己的 skills 目录，由组件父 POM 统一把 Skill 打包到 META-INF/skills。 -->
+                    <skillsDir>${project.basedir}/skills</skillsDir>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
         <pluginManagement>
